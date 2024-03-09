@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <main>
+    <div class="login-with-mobile">
+      <div class="login-w-id grid md:grid-cols-2 sm:grid-cols-2 grid-cols-1">
+        <div
+          class="logo bg-[#1e293b] text-white w-full h-[60vh] sm:h-[100vh] lg:text-[32px] text-[24px] sm:text-[18px] md:text-[22px] font-bold text-center flex flex-col items-center justify-center">
+          <p>shortURL Generator</p>
+        </div>
+        <div class="login-field w-full h-[60vh] sm:h-[100vh] sm:flex flex-col justify-center items-center">
+          <form action="/signUp" method="post"
+            class="input-field border-2 border-color: rgb(29 78 216); p-[20px] lg:w-[400px] md:w-[300px] rounded-md sm:m-[0] mx-[30px] mt-[60px]">
+            <h3 class="font-bold text-[26px] mb-[35px]">SignUp</h3>
+            <div>
+              <label for="voterName" class="font-semibold mb-[10px]">Enter Full Name</label>
+              <br />
+              <input type="text" id="userName"
+                class="border-2 border-color: rgb(29 78 216); rounded-md mb-[5px] w-[100%] m-[5px] p-1"
+                name="fullName" />
+            </div>
+            <div>
+              <label for="userEmail" class="font-semibold mb-[10px]">Enter Email</label>
+              <br />
+              <input type="text" id="userEmail"
+                class="border-2 border-color: rgb(29 78 216); rounded-md mb-[5px] w-[100%] m-[5px] p-1" name="email" />
+            </div>
+            <div>
+              <label for="userPassword" class="font-semibold mb-[10px]">Enter Password</label>
+              <br />
+              <input type="password" id="userPassword"
+                class="border-2 border-color: rgb(29 78 216); rounded-md mb-[5px] w-[100%] m-[5px] p-1"
+                name="password" />
+            </div>
+            <a href="/login" class="flex ">
+              <p class="font-light mb-[35px]">Already user <h5 class="font-bold"> Login</h5>?</p>
+            </a>
+            <button type="submit"
+              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 w-[100%]">SignUp</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</body>
+
+</html>

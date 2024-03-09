@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>to do list</title>
+</head>
+
+<body>
+  <div class="addData mt-16">
+    <center>
+      <h1 class="text-[30px] font-bold mb-10">Add Data To Do List</h1>
+    </center>
+    <form class="max-w-sm mx-auto" action="/v1/addToDo" method="post">
+      <div class="mb-5">
+        <label for="toDo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">To Do</label>
+        <input type="text" id="toDo"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Type Your Note Here" required name="toDo" />
+      </div>
+      <div class="mb-5">
+        <label for="Time" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Time</label>
+        <input type="time" id="time"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Enter Time" required name="time" />
+      </div>
+      <div class="mb-5">
+        <label for="Date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
+        <input type="date" id="date"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Enter Date" required name="date" />
+      </div>
+      <button type="submit"
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add</button>
+    </form>
+  </div>
+  <div class="todotable w-4/5 m-auto mt-16">
+    <center>
+      <h1 class="text-[30px] font-bold mb-10">To Do Lists</h1>
+    </center>
+    <div class="relative overflow-x-auto">
+      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+            <th scope="col" class="px-6 py-3">
+              To Do
+            </th>
+            <th scope="col" class="px-6 py-3">
+              Time
+            </th>
+            <th scope="col" class="px-6 py-3">
+              date
+            </th>
+            <th scope="col" class="px-6 py-3">
+              Email
+            </th>
+            <th scope="col" class="px-6 py-3">
+            </th>
+            <th scope="col" class="px-6 py-3">
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% data.forEach(item=> { %>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <%= item.toDo %>
+              </th>
+              <td class="px-6 py-4">
+                <%= item.time %>
+              </td>
+              <td class="px-6 py-4">
+                <%= item.date %>
+              </td>
+              <td class="px-6 py-4">
+                <%= item.userId.email %>
+              </td>
+              <td class="px-6 py-4 w-[10%]">
+                <button type="button"
+                  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5  mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" onclick="redirectToUpdatePageWithData('<%= item._id %>')">Update</button>
+              </td>
+              <td class="px-6 py-4 w-[10%]">
+                <button type="button"
+                  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5  mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" onclick="redirectToDeletePageWithId('<%= item._id %>')">Delete</button>
+              </td>
+            </tr>
+            <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    function redirectToUpdatePageWithData(data) {
+      // Construct the URL with query parameters
+      const updatePageUrl = '/v1/update/' + data.toString();
+      // console.log(updatePageUrl);
+
+      // Redirect to the update page with data
+      window.location.href = updatePageUrl;
+    }
+    
+    function redirectToDeletePageWithId(id){
+      const  deletePageUrl="/v1/delete/"+ id.toString();
+
+      window.location.href =  deletePageUrl;
+    }
+  </script>
+</body>
+
+</html>
